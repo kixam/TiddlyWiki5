@@ -82,8 +82,17 @@ function Server(options) {
 	this.protocol = "http";
 	var tlsKeyFilepath = this.get("tls-key"),
 		tlsCertFilepath = this.get("tls-cert"),
+		tlsPassFilepath = this.get("tls-pass"),
 		tlsPassphrase = this.get("tls-passphrase");
-	if(tlsCertFilepath && tlsKeyFilepath) {
+	if(tlsCertFilepath && tlsKeyFilepath && tlsPassFilepath) {
+		this.listenOptions = {
+			key: fs.readFileSync(path.resolve($tw.boot.wikiPath,tlsKeyFilepath),"utf8"),
+			cert: fs.readFileSync(path.resolve($tw.boot.wikiPath,tlsCertFilepath),"utf8"),
+			passphrase: fs.readFileSync(path.resolve($tw.boot.wikiPath,tlsPassFilepath),"utf8")
+		};
+		this.protocol = "https";
+	}
+	else if(tlsCertFilepath && tlsKeyFilepath) {
 		this.listenOptions = {
 			key: fs.readFileSync(path.resolve(this.boot.wikiPath,tlsKeyFilepath),"utf8"),
 			cert: fs.readFileSync(path.resolve(this.boot.wikiPath,tlsCertFilepath),"utf8"),
