@@ -1,4 +1,4 @@
-title: $:/core/ui/Buttons/save-wiki
+title: $:/plugins/tiddlywiki/tiddlyweb/ui/Buttons/save-wiki
 tags: $:/tags/PageControls
 caption: {{$:/plugins/tiddlywiki/tiddlyweb/icon/cloud}} Server status
 description: Status of synchronisation with server
